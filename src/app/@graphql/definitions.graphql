@@ -1,0 +1,58 @@
+query GetAllMessages{
+  user {
+    id
+    name
+    sent_messages {
+      recipient_user {
+        name
+      }
+      created_at
+      message
+    }
+  }
+}
+
+query GetAllUsers {
+  user {
+    id
+    name
+    image
+  }
+}
+
+query GetUserById($user_id: uuid!) {
+  user_by_pk(id: $user_id) {
+     id
+     name
+     image
+  }
+}
+
+mutation SendMessage(
+  $sender: uuid!
+  $recipient: uuid!
+  $message: String!
+) {
+  insert_messages_one(
+    object: { sender: $sender, recipient: $recipient, message: $message }
+  ) {
+    created_at
+  }
+}
+
+subscription ReceivedMessagesByUserId($sender: [uuid!], $recipient: [uuid!]) {
+  messages(where: {recipient: {_in: $recipient}, sender: {_in: $sender}}, order_by: {created_at: asc}) {
+    created_at
+    message
+    recipient_user {
+      id
+      image
+      name
+    }
+    sender_user {
+      id
+      image
+      name
+    }
+  }
+}

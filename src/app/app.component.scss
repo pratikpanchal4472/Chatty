@@ -1,0 +1,246 @@
+.chatbox {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0px #ddd;
+
+  .sidebar {
+    width: 30%;
+    padding: 15px 0;
+    border-right: thin solid #eee;
+    position: relative;
+
+    .searchbox {
+      padding: 0 15px 15px 15px;
+
+      .searchbar {
+        background: #eef3fc;
+        width: 100%;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    ul {
+      margin: 0;
+
+      li {
+        list-style: none;
+        padding: 10px 15px;
+        border-bottom: thin solid #eee;
+        cursor: pointer;
+
+        &.active {
+          border-right: 3px solid #2160c4;
+        }
+
+        .media-content {
+          p {
+            font-weight: 500;
+            margin-bottom: 0px;
+          }
+
+          small {
+            font-size: 0.9em;
+            color: #999;
+          }
+        }
+      }
+    }
+
+    .banner {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #2160c4;
+      font-size: 2rem;
+      font-weight: 500;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      height: 80px;
+      padding: 8px 16px;
+      color: #fff;
+      text-shadow: 2px 2px red;
+    }
+  }
+}
+
+.searchbar {
+  i {
+    margin-right: 5px;
+    margin-left: 15px;
+    color: #999;
+  }
+
+  input {
+    width: 100%;
+    background: transparent;
+    padding: 10px;
+    outline: none;
+    border: 0;
+    margin: 0;
+  }
+}
+
+.conversation {
+  position: relative;
+  display: block;
+  width: 70%;
+
+  .chat-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 70px;
+    width: 100%;
+    padding: 5px 15px;
+    border-bottom: thin solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .chat-menu {
+      font-size: 1.5em;
+    }
+
+    .user-label {
+      font-weight: 500;
+      line-height: 2.8;
+    }
+  }
+
+  .chat-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 80px;
+    width: 100%;
+    padding: 5px 15px;
+    border-top: thin solid #eee;
+    display: flex;
+    justify-content: space-between;
+
+    .message-input-group {
+      width: 100%;
+      background: #eef3fc;
+      padding: 5px;
+      border-radius: 10px;
+      position: relative;
+    }
+  }
+
+  .chat-content {
+    position: absolute;
+    overflow-y: auto;
+    overflow-x: hidden;
+    top: 70px;
+    height: 83.5%;
+    width: 100%;
+    background: #eef3fc;
+    padding: 15px;
+    z-index: 1;
+
+    .message-container {
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      margin: 15px;
+      position: relative;
+    }
+  }
+}
+
+.message-input-group {
+  textarea {
+    outline: none;
+    background: transparent;
+    border: 0;
+    margin: 0;
+    resize: none;
+    width: 90%;
+  }
+
+  .send {
+    position: absolute;
+    right: 2%;
+    top: 30%;
+    font-size: 2em;
+    color: #3273dc;
+    cursor: pointer;
+  }
+}
+
+.message-container {
+  &.mine {
+    justify-content: flex-end;
+    color: #fff;
+
+
+    .message {
+      background-color: #2160c4;
+
+      span {
+        &.timestamp {
+          color: #fff;
+        }
+      }
+
+      &:after {
+        left: 100%;
+        right: unset;
+        border-left-color: #2160c4 !important;
+        border-right-color: transparent;
+      }
+    }
+  }
+
+  .message {
+    background: #fff;
+    width: auto;
+    padding: 10px 15px 20px 15px;
+    box-shadow: 0 2px 5px 0 #ddd;
+    max-width: 305px;
+    min-width: 105px;
+    position: relative;
+    text-align: left;
+    border-radius: 3px;
+  }
+}
+
+.message {
+  &:after {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: "";
+    height: 0px;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: transparent;
+    border-right-color: #fff;
+    border-width: 8px;
+    margin-top: -8px;
+  }
+
+  span {
+    &.timestamp {
+      position: absolute;
+      bottom: 3px;
+      right: 10px;
+      font-size: 0.7em;
+      color: #999;
+    }
+  }
+}
+
+img.user {
+  width: 48px;
+  height: 48px;
+}

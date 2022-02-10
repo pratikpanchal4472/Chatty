@@ -1,0 +1,70 @@
+<ng-container *ngIf="selectedUserObs | async as selectedUser">
+  <div class="chatbox container p-0">
+    <div class="sidebar">
+      <div class="searchbox">
+        <div class="searchbar">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Search" />
+        </div>
+      </div>
+      <ul>
+        <ng-container *ngFor="let user of users | async">
+          <ng-container *ngIf="selectedUser.id !== user.id">
+            <li [ngClass]="{'has-background-link-lightactive': selectedUser.id !== user.id}">
+              <div class="d-flex align-items-center media">
+                <div class="flex-shrink-0 media-left">
+                  <img [src]="user.image" [alt]="user.name" class="user">
+                </div>
+                <div class="flex-grow-1 ms-3 media-content">
+                  <div class="content">
+                    <p>{{user.name}}</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ng-container>
+        </ng-container>
+      </ul>
+      <div class="banner">
+        Chatty
+      </div>
+    </div>
+    <div class="conversation">
+      <div class="chat-header">
+        <div class="d-flex align-items-center media">
+          <div class="flex-shrink-0 media-left">
+            <img [src]="selectedUser.image" [alt]="selectedUser.name" class="online user">
+          </div>
+          <div class="flex-grow-1 ms-3 media-content">
+            <div class="content">
+              <p class="user-label mb-0">{{selectedUser.name}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="has-dropdown is-hoverable">
+          <a class="chat-menu" href="#/Home">
+            <span class="icon">
+              <mat-icon>more_vert</mat-icon>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="chat-content">
+        <ng-container *ngFor="let message of messages | async">
+          <div class="message-container" [class.mine]="message.sender_user?.id === selectedUser.id">
+            <div class="message" [class.has-background-link-dark]="message.sender_user?.id === selectedUser.id">
+              <p>{{ message.message }}</p>
+              <span class="timestamp">{{ message.created_at | date:'shortTime'}}</span>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+      <div class="chat-footer">
+        <div class="message-input-group">
+          <textarea rows="2" placeholder="Type a message" [(ngModel)]="message" (keyup.enter)="send()"></textarea>
+          <mat-icon class="send" (click)="send()">send</mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
