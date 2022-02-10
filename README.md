@@ -1,2 +1,2 @@
 # Chatty
-Chat App using HASURA/GraphQL/Apollo/Angular
+Chat App using [Hasura](https://hasura.io/) | [GraphQL](https://graphql.org/) | [Apollo](https://www.apollographql.com/) | [Angular](https://angular.io/)
